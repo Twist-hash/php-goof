@@ -1,0 +1,15 @@
+name: Demo for synk
+'on':
+  push:
+    branches:
+      - main
+    pull_request: null
+  jobs:
+    security:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: action/checkout@master
+        - name: Run synk to check for vulnerabilities
+          uses: synk/actions/php@master
+          env:
+            SYNK_TOKEN: $((secrets.SYNK_TOKEN))
