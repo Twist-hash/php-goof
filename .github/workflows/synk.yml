@@ -1,11 +1,15 @@
-name: Demo for synk
+name: Snyk example 
 on: push
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@master
-      - name: Run synk to check for vulnerabilities
-        uses: synk/actions/php@master
-        env:
-          SYNK_TOKEN: $(( secrets.SYNK_TOKEN))
+    - uses: actions/checkout@master
+    - uses: snyk/actions/setup@master
+    - uses: actions/setup-go@v1
+      with:
+        go-version: "1.13"
+    - name: Snyk test
+      run: snyk test
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
