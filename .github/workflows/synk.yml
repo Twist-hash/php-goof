@@ -1,9 +1,5 @@
 name: Demo for synk
-on:
-  push:
-    branches:
-      - main
-    pull_request:
+on: push
   jobs:
     security:
       runs-on: ubuntu-latest
